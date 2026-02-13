@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julius De Lara - Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+        :root {
+            --bg-color: #0a0a0a;
+            --text-light: #e0e0e0;
+            --text-grey: #a0a0a0;
+            --card-dark: #1a1a1a;
+            --accent-blue: #4a4a4a;
+            --accent-purple: #5a5a5a;
+            --accent-orange: #ff9f76;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 50px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: var(--bg-color);
+        }
+
+        .nav-container {
+            background: var(--card-dark);
+            border-radius: 50px;
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(74, 74, 74, 0.3);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 16px;
+            border-radius: 25px;
+        }
+
+        .nav-menu a:hover {
+            color: #808080;
+            background: rgba(74, 74, 74, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .nav-divider {
+            width: 2px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(74, 74, 74, 0.4);
+        }
+
+        .proof-btn {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            border: none;
+        }
+
+        .proof-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(74, 74, 74, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            min-height: calc(100vh - 150px);
+        }
+
+        /* Left Side - Text Content */
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .greeting {
+            font-size: 1.3rem;
+            color: var(--text-grey);
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-grey);
+            max-width: 600px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-grey);
+        }
+
+        /* Right Side - Profile Photo */
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .profile-photo {
+            width: 450px;
+            height: 550px;
+            object-fit: cover;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-glow {
+            position: absolute;
+            width: 500px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(74, 144, 226, 0.3) 0%, transparent 70%);
+            border-radius: 30px;
+            z-index: 1;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        /* Languages Section */
+        .languages-section {
+            max-width: 1400px;
+            margin: 100px auto;
+            padding: 0 50px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-grey);
+        }
+
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .language-card {
+            background: var(--card-dark);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .language-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .language-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .language-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(74, 144, 226, 0.3);
+        }
+
+        .language-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .language-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .language-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .language-description {
+            font-size: 0.95rem;
+            color: var(--text-grey);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 50px;
+        }
+
+        .projects-section .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: var(--card-dark);
+            border-radius: 25px;
+            padding: 25px;
+            border: 1px solid rgba(74, 74, 74, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            border-color: rgba(74, 74, 74, 0.5);
+        }
+
+        .project-video-container {
+            position: relative;
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
+            margin-bottom: 20px;
+        }
+
+        .project-video {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            border-radius: 15px;
+        }
+
+        .project-info {
+            padding: 10px 0;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            font-size: 0.95rem;
+            color: var(--text-grey);
+            line-height: 1.6;
+        }
+
+        .project-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(74, 74, 74, 0.3);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent-orange);
+            margin-top: 10px;
+        }
+
+        /* Certificates Section */
+        .certificates-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 50px;
+        }
+
+        .certificates-section .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 70%;
+            margin: 0 auto;
+        }
+
+        .certificate-card {
+            background: var(--card-dark);
+            border-radius: 25px;
+            padding: 20px;
+            border: 1px solid rgba(74, 74, 74, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            border-color: rgba(74, 74, 74, 0.5);
+        }
+
+        .certificate-image {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            border-radius: 15px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .certificate-card:hover .certificate-image {
+            transform: scale(1.05);
+        }
+
+        /* Work Experience Section */
+        .experience-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 50px;
+        }
+
+        .experience-section .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .experience-card {
+            background: var(--card-dark);
+            border-radius: 25px;
+            padding: 40px;
+            border: 1px solid rgba(74, 74, 74, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+S
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .experience-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .experience-company {
+            font-size: 1.2rem;
+            color: var(--accent-blue);
+            margin-bottom: 20px;
+        }
+
+        .experience-description {
+            font-size: 1rem;
+            color: var(--text-grey);
+            line-height: 1.8;
+        }
+
+        /* Education Section */
+        .education-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 50px;
+        }
+
+        .education-section .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .education-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .education-card {
+            background: var(--card-dark);
+            border-radius: 25px;
+            padding: 35px 40px;
+            border: 1px solid rgba(74, 74, 74, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .education-year {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+            min-width: 150px;
+        }
+
+        .education-details {
+            flex: 1;
+        }
+
+        .education-degree {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .education-school {
+            font-size: 1rem;
+            color: var(--text-grey);
+        }
+
+        /* Responsive Design */
+        @media (min-width: 1441px) {
+            .certificates-grid {
+                max-width: 65%;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                padding: 30px;
+            }
+
+            .hero-content {
+                order: 1;
+                text-align: center;
+            }
+
+            .hero-image {
+                order: 2;
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .profile-photo {
+                width: 350px;
+                height: 450px;
+            }
+
+            .nav-menu {
+                gap: 30px;
+            }
+
+            .nav-container {
+                padding: 12px 30px;
+                gap: 25px;
+            }
+
+            .nav-buttons {
+                gap: 12px;
+            }
+
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .experience-section,
+            .education-section {
+                padding: 30px;
+            }
+
+            .certificates-section {
+                padding: 30px;
+            }
+
+            .certificates-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                max-width: 90%;
+                gap: 25px;
+            }
+
+            .certificate-image {
+                height: 220px;
+            }
+
+            .languages-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .projects-section {
+                padding: 30px;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            }
+
+            .project-video {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 20px 30px;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                padding: 20px 15px;
+                gap: 12px;
+                border-radius: 30px;
+            }
+
+            .nav-menu {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-menu a {
+                font-size: 0.85rem;
+                padding: 6px 12px;
+            }
+
+            .nav-divider {
+                display: none;
+            }
+
+            .nav-btn {
+                padding: 10px 20px;
+                font-size: 0.85rem;
+                width: auto;
+                flex: 1;
+                min-width: 140px;
+            }
+
+            .nav-buttons {
+                display: flex;
+                gap: 10px;
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .hero {
+                padding: 30px 20px;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .greeting {
+                font-size: 1.1rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .profile-photo {
+                width: 280px;
+                height: 380px;
+            }
+
+            .languages-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .language-card {
+                padding: 30px 20px;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .experience-section,
+            .education-section {
+                padding: 20px;
+                margin: 40px auto;
+            }
+
+            .certificates-section {
+                padding: 20px;
+                margin: 40px auto;
+            }
+
+            .certificates-grid {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+                gap: 20px;
+            }
+
+            .certificate-card {
+                padding: 15px;
+            }
+
+            .certificate-image {
+                height: auto;
+                max-height: 300px;
+                object-fit: contain;
+            }
+
+            .projects-section {
+                padding: 20px;
+                margin: 40px auto;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-video {
+                height: 220px;
+            }
+
+            .project-title {
+                font-size: 1.3rem;
+            }
+
+            .experience-card,
+            .education-card {
+                padding: 25px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .education-year {
+                min-width: auto;
+                font-size: 1.1rem;
+            }
+
+            .education-degree {
+                font-size: 1.2rem;
+            }
+
+            .modal-content {
+                padding: 40px 30px;
+                width: 92%;
+            }
+
+            .modal-title {
+                font-size: 2rem;
+            }
+
+            .contact-option {
+                padding: 20px;
+            }
+
+            .services-modal-content,
+            .proof-modal-content {
+                padding: 40px 30px;
+                width: 92%;
+            }
+
+            .education-modal-content,
+            .certificates-modal-content {
+                padding: 40px 30px;
+                width: 92%;
+                max-height: 80vh;
+            }
+
+            .service-item {
+                font-size: 1.1rem;
+                padding: 18px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-container {
+                width: 100%;
+                padding: 15px 10px;
+                gap: 10px;
+            }
+
+            .nav-menu {
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+
+            .nav-menu a {
+                font-size: 0.75rem;
+                padding: 5px 10px;
+            }
+
+            .nav-btn {
+                padding: 8px 15px;
+                font-size: 0.75rem;
+                min-width: 120px;
+                flex: 1;
+            }
+
+            .nav-buttons {
+                gap: 8px;
+                width: 100%;
+            }
+
+            .hero {
+                padding: 20px;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .profile-photo {
+                width: 200px;
+                height: 300px;
+            }
+
+            .languages-section {
+                padding: 0 20px;
+            }
+
+            .certificates-section {
+                padding: 15px;
+                margin: 30px auto;
+            }
+
+            .certificate-card {
+                padding: 12px;
+            }
+
+            .certificate-image {
+                height: auto;
+                max-height: 250px;
+            }
+
+            .projects-section {
+                padding: 15px;
+                margin: 30px auto;
+            }
+
+            .project-video {
+                height: 180px;
+            }
+
+            .project-title {
+                font-size: 1.2rem;
+            }
+
+            .project-description {
+                font-size: 0.85rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .experience-card {
+                padding: 20px;
+            }
+
+            .experience-title {
+                font-size: 1.4rem;
+            }
+
+            .experience-company {
+                font-size: 1rem;
+            }
+
+            .modal-content {
+                padding: 30px 20px;
+                width: 95%;
+            }
+
+            .modal-title {
+                font-size: 1.8rem;
+            }
+
+            .modal-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 25px;
+            }
+
+            .contact-option {
+                padding: 18px;
+                gap: 15px;
+            }
+
+            .contact-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.4rem;
+            }
+
+            .contact-value {
+                font-size: 1rem;
+            }
+
+            .education-degree,
+            .education-school {
+                font-size: 1rem;
+            }
+
+            .floating-services {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .services-float-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .services-modal-content,
+            .proof-modal-content {
+                padding: 30px 20px;
+                width: 95%;
+            }
+
+            .education-modal-content,
+            .certificates-modal-content {
+                padding: 30px 20px;
+                width: 95%;
+                max-height: 85vh;
+            }
+
+            .service-item {
+                font-size: 1rem;
+                padding: 15px 18px;
+            }
+
+            .service-icon {
+                font-size: 1.3rem;
+            }
+
+            .services-list {
+                gap: 15px;
+                margin-top: 20px;
+            }
+
+            .proof-image {
+                border-radius: 10px;
+            }
+        }
+
+        /* Contact Modal */
+        .contact-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--card-dark);
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            border: 1px solid rgba(74, 74, 74, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            color: var(--text-grey);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: none;
+            border: none;
+        }
+
+        .modal-close:hover {
+            color: var(--text-light);
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal-subtitle {
+            font-size: 1rem;
+            color: var(--text-grey);
+            margin-bottom: 40px;
+        }
+
+        .contact-options {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-option {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 25px;
+            background: rgba(74, 74, 74, 0.1);
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .contact-option:hover {
+            background: rgba(74, 74, 74, 0.2);
+            border-color: rgba(74, 74, 74, 0.5);
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            border-radius: 15px;
+        }
+
+        .facebook-icon {
+            background: linear-gradient(135deg, #3b5998, #2d4373);
+            color: white;
+        }
+
+        .gmail-icon {
+            background: linear-gradient(135deg, #ea4335, #c5221f);
+            color: white;
+        }
+
+        .contact-details {
+            flex: 1;
+        }
+
+        .contact-label {
+            font-size: 0.9rem;
+            color: var(--text-grey);
+            margin-bottom: 5px;
+        }
+
+        .contact-value {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        /* Floating Services Button */
+        .floating-services {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+
+        .services-float-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--card-dark);
+            border: 2px solid rgba(74, 74, 74, 0.5);
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .services-float-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .services-float-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+            border-color: rgba(74, 74, 74, 0.8);
+        }
+
+        /* Services Modal */
+        .services-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .services-modal.active {
+            display: flex;
+        }
+
+        .services-modal-content {
+            background: var(--card-dark);
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            border: 1px solid rgba(74, 74, 74, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        .services-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .service-item {
+            background: rgba(74, 74, 74, 0.2);
+            padding: 20px 25px;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-light);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .service-item:hover {
+            border-color: rgba(74, 74, 74, 0.5);
+            background: rgba(74, 74, 74, 0.3);
+            transform: translateX(10px);
+        }
+
+        .service-icon {
+            font-size: 1.5rem;
+            color: var(--accent-purple);
+        }
+
+        /* Proof Modal */
+        .proof-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .proof-modal.active {
+            display: flex;
+        }
+
+        .proof-modal-content {
+            background: var(--card-dark);
+            border-radius: 30px;
+            padding: 30px;
+            max-width: 900px;
+            max-height: 85vh;
+            width: 90%;
+            position: relative;
+            border: 1px solid rgba(74, 74, 74, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .proof-image {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        /* Education Modal */
+        .education-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .education-modal.active {
+            display: flex;
+        }
+
+        .education-modal-content {
+            background: var(--card-dark);
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 900px;
+            max-height: 85vh;
+            width: 90%;
+            position: relative;
+            border: 1px solid rgba(74, 74, 74, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.3s ease;
+            overflow-y: auto;
+        }
+
+        /* Certificates Modal */
+        .certificates-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .certificates-modal.active {
+            display: flex;
+        }
+
+        .certificates-modal-content {
+            background: var(--card-dark);
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 1200px;
+            max-height: 90vh;
+            width: 90%;
+            position: relative;
+            border: 1px solid rgba(74, 74, 74, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.3s ease;
+            overflow-y: auto;
+        }
+
+        /* Custom Scrollbar for Modals */
+        .proof-modal-content::-webkit-scrollbar,
+        .education-modal-content::-webkit-scrollbar,
+        .certificates-modal-content::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .proof-modal-content::-webkit-scrollbar-track,
+        .education-modal-content::-webkit-scrollbar-track,
+        .certificates-modal-content::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .proof-modal-content::-webkit-scrollbar-thumb,
+        .education-modal-content::-webkit-scrollbar-thumb,
+        .certificates-modal-content::-webkit-scrollbar-thumb {
+            background: rgba(74, 74, 74, 0.8);
+            border-radius: 10px;
+        }
+
+        .proof-modal-content::-webkit-scrollbar-thumb:hover,
+        .education-modal-content::-webkit-scrollbar-thumb:hover,
+        .certificates-modal-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(74, 74, 74, 1);
+        }
+
+    </style></head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#" onclick="event.preventDefault(); openCertificatesModal();">Certificates</a></li>
+                <li><a href="#" onclick="event.preventDefault(); openEducationModal();">Education</a></li>
+            </ul>
+            <div class="nav-divider"></div>
+            <div class="nav-buttons">
+                <button onclick="openContactModal()" class="nav-btn contact-btn">Contact Me</button>
+                <button onclick="openProofModal()" class="nav-btn proof-btn">Proof of Transactions</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Left Side - Text Content -->
+        <div class="hero-content">
+            <p class="greeting">Hello, I'm Julius C. De Lara</p>
+            <h1 class="hero-title">
+                <span class="highlight">Aspiring Web Developer</span> & IT Student
+            </h1>
+            <p class="hero-description">
+                I'm an aspiring web developer and IT student with a solid foundation in software development and a growing interest in business analysis. Skilled in Python, C++, HTML, CSS, and basic data handling, with hands-on experience troubleshooting Windows systems and working with Cisco Packet Tracer. Passionate about using technology to improve processes, support data-driven decisions, and enhance efficiency.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">20+</span>
+                    <span class="stat-label">Happy Clients</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">300+</span>
+                    <span class="stat-label">Cups of Coffee</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Right Side - Profile Photo -->
+        <div class="hero-image">
+            <div class="profile-glow"></div>
+            <img src="../socials-img/new-2x2.png" alt="Julius De Lara" class="profile-photo">
+        </div>
+    </section>
+
+    <!-- Languages Section -->
+    <section class="languages-section">
+        <div class="section-header">
+            <h2 class="section-title">Languages</h2>
+            <p class="section-subtitle">Programming languages I work with</p>
+        </div>
+        
+        <div class="languages-grid">
+            <!-- PHP -->
+            <div class="language-card">
+                <img src="../lang-img/php.png" alt="PHP">
+                <h3 class="language-name">PHP</h3>
+                <p class="language-description">
+                    Server-side scripting language ideal for web development and building dynamic websites.
+                </p>
+            </div>
+
+            <!-- HTML -->
+            <div class="language-card">
+                <img src="../lang-img/html.png" alt="HTML">
+                <h3 class="language-name">HTML</h3>
+                <p class="language-description">
+                    The standard markup language for creating web pages and web applications.
+                </p>
+            </div>
+
+            <!-- Java -->
+            <div class="language-card">
+                <div class="language-icon">
+                    <i class="fab fa-java" style="color: #f89820;"></i>
+                </div>
+                <h3 class="language-name">Java</h3>
+                <p class="language-description">
+                    Object-oriented programming language used for building enterprise-scale applications.
+                </p>
+            </div>
+
+            <!-- Python -->
+            <div class="language-card">
+                <img src="../lang-img/python.png" alt="Python">
+                <h3 class="language-name">Python</h3>
+                <p class="language-description">
+                    High-level programming language known for its simplicity and versatility.
+                </p>
+            </div>
+
+            <!-- C++ -->
+            <div class="language-card">
+                <div class="language-icon">
+                    <i class="fas fa-code" style="color: #00599C;"></i>
+                </div>
+                <h3 class="language-name">C++</h3>
+                <p class="language-description">
+                    Powerful general-purpose language for system programming and game development.
+                </p>
+            </div>
+
+            <!-- CSS -->
+            <div class="language-card">
+                <img src="../lang-img/css.png" alt="CSS">
+                <h3 class="language-name">CSS</h3>
+                <p class="language-description">
+                    Style sheet language used for describing the presentation of web documents.
+                </p>
+            </div>
+
+            <!-- JavaScript -->
+            <div class="language-card">
+                <div class="language-icon">
+                    <i class="fab fa-js-square" style="color: #f7df1e;"></i>
+                </div>
+                <h3 class="language-name">JavaScript</h3>
+                <p class="language-description">
+                    Dynamic programming language for creating interactive and dynamic web content.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="section-header">
+            <h2 class="section-title">Projects</h2>
+            <p class="section-subtitle">Featured works and developments</p>
+        </div>
+        
+        <div class="projects-grid">
+            <!-- APF Gym Scheduling and Appointment System -->
+            <div class="project-card">
+                <div class="project-video-container">
+                    <video class="project-video" controls>
+                        <source src="../projects/apf-gym-scheduling&appointment.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">APF Gym Scheduling and Appointment System</h3>
+                    <p class="project-description">
+                        A comprehensive scheduling and appointment management system designed for gym operations, featuring real-time booking and member management.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Inventory Management System -->
+            <div class="project-card">
+                <div class="project-video-container">
+                    <video class="project-video" controls>
+                        <source src="../projects/Inventory Management System-JAVA.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Inventory Management System Console Project</h3>
+                    <p class="project-description">
+                        Console-based inventory tracking application built with Java for efficient stock management and monitoring.
+                    </p>
+                    <span class="project-badge">Commission Based</span>
+                </div>
+            </div>
+
+            <!-- The Malvar Bat Cave Cafe -->
+            <div class="project-card">
+                <div class="project-video-container">
+                    <video class="project-video" controls>
+                        <source src="../projects/The Malvar Bat Cave Cafe.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">The Malvar Bat Cave Cafe</h3>
+                    <p class="project-description">
+                        A school project featuring a cafe management system with ordering and inventory capabilities.
+                    </p>
+                    <span class="project-badge">School Project</span>
+                </div>
+            </div>
+
+            <!-- STL BET MONITORING SYSTEM -->
+            <div class="project-card">
+                <div class="project-video-container">
+                    <video class="project-video" controls>
+                        <source src="../projects/STL Bet Monitoring System.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">STL BET MONITORING SYSTEM</h3>
+                    <p class="project-description">
+                        Professional betting monitoring system with real-time tracking and comprehensive reporting features.
+                    </p>
+                    <span class="project-badge">Commission Based</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section id="experience" class="experience-section">
+        <div class="section-header">
+            <h2 class="section-title">Work Experience</h2>
+            <p class="section-subtitle">Professional journey and contributions</p>
+        </div>
+        
+        <div class="experience-card">
+            <h3 class="experience-title">Support Staff</h3>
+            <p class="experience-company">Mayor's Office, City Hall of Sto. Tomas, Batangas</p>
+            <p class="experience-description">
+                Assisting with administrative tasks and public service coordination to ensure efficient operations and support community needs.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="contact-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeContactModal()">&times;</button>
+            <h2 class="modal-title">Get In Touch</h2>
+            <p class="modal-subtitle">Choose your preferred way to contact me</p>
+            
+            <div class="contact-options">
+                <a href="https://www.facebook.com/yonam.j22" target="_blank" class="contact-option">
+                    <div class="contact-icon facebook-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="contact-details">
+                        <div class="contact-label">Facebook</div>
+                        <div class="contact-value">@yonam.j22</div>
+                    </div>
+                </a>
+                
+                <a href="mailto:delarajjae@gmail.com" class="contact-option">
+                    <div class="contact-icon gmail-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value">delarajjae@gmail.com</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Modal -->
+    <div id="servicesModal" class="services-modal">
+        <div class="services-modal-content">
+            <button class="modal-close" onclick="closeServicesModal()">&times;</button>
+            <h2 class="modal-title">Our Services</h2>
+            <p class="modal-subtitle">Professional services we offer</p>
+            
+            <div class="services-list">
+                <div class="service-item">
+                    <i class="fas fa-laptop-code service-icon"></i>
+                    <span>WEB DEVELOPMENT</span>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-graduation-cap service-icon"></i>
+                    <span>CAPSTONE</span>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-file-alt service-icon"></i>
+                    <span>ESSAY</span>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-palette service-icon"></i>
+                    <span>POSTERS</span>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-ellipsis-h service-icon"></i>
+                    <span>OTHERS</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Proof of Transactions Modal -->
+    <div id="proofModal" class="proof-modal">
+        <div class="proof-modal-content">
+            <button class="modal-close" onclick="closeProofModal()">&times;</button>
+            <h2 class="modal-title">Proof of Transactions</h2>
+            <p class="modal-subtitle">Verified client transactions and completed projects</p>
+            <img src="../projects/proofoftransac.jpg" alt="Proof of Transactions" class="proof-image">
+        </div>
+    </div>
+
+    <!-- Education Modal -->
+    <div id="educationModal" class="education-modal">
+        <div class="education-modal-content">
+            <button class="modal-close" onclick="closeEducationModal()">&times;</button>
+            <h2 class="modal-title">Education</h2>
+            <p class="modal-subtitle">Academic background and qualifications</p>
+            
+            <div class="education-timeline">
+                <div class="education-card">
+                    <div class="education-year">2023 – 2027</div>
+                    <div class="education-details">
+                        <h3 class="education-degree">Bachelor of Science in Information Technology</h3>
+                        <p class="education-school">Currently Pursuing</p>
+                    </div>
+                </div>
+                
+                <div class="education-card">
+                    <div class="education-year">2021 – 2023</div>
+                    <div class="education-details">
+                        <h3 class="education-degree">Senior High School</h3>
+                        <p class="education-school">Lilyrose Foundation Inc.</p>
+                    </div>
+                </div>
+                
+                <div class="education-card">
+                    <div class="education-year">2017 – 2021</div>
+                    <div class="education-details">
+                        <h3 class="education-degree">Junior High School</h3>
+                        <p class="education-school">Pantay Integrated High School</p>
+                    </div>
+                </div>
+                
+                <div class="education-card">
+                    <div class="education-year">2011 – 2016</div>
+                    <div class="education-details">
+                        <h3 class="education-degree">Elementary School</h3>
+                        <p class="education-school">Pantay Elementary School</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificates Modal -->
+    <div id="certificatesModal" class="certificates-modal">
+        <div class="certificates-modal-content">
+            <button class="modal-close" onclick="closeCertificatesModal()">&times;</button>
+            <h2 class="modal-title">Certificates</h2>
+            <p class="modal-subtitle">Professional certifications and achievements</p>
+            
+            <div class="certificates-grid">
+                <div class="certificate-card">
+                    <img src="../certs/databiz.jpg" alt="Databiz Certificate" class="certificate-image">
+                </div>
+                
+                <div class="certificate-card">
+                    <img src="../certs/databiz2.jpg" alt="Databiz Certificate 2" class="certificate-image">
+                </div>
+                
+                <div class="certificate-card">
+                    <img src="../certs/databiz3.png" alt="Databiz Certificate 3" class="certificate-image">
+                </div>
+                
+                <div class="certificate-card">
+                    <img src="../certs/JPCS.png" alt="JPCS Certificate" class="certificate-image">
+                </div>
+                
+                <div class="certificate-card">
+                    <img src="../certs/WHITE.png" alt="White Certificate" class="certificate-image">
+                </div>
+                
+                <div class="certificate-card">
+                    <img src="../certs/YELLOW.png" alt="Yellow Certificate" class="certificate-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Services Button -->
+    <div class="floating-services">
+        <button class="services-float-btn" onclick="openServicesModal()" title="Our Services">
+            <img src="../socials-img/services.png" alt="Services">
+        </button>
+    </div>
+
+    <script>
+        function openContactModal() {
+            document.getElementById('contactModal').classList.add('active');
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').classList.remove('active');
+        }
+
+        function openServicesModal() {
+            document.getElementById('servicesModal').classList.add('active');
+        }
+
+        function closeServicesModal() {
+            document.getElementById('servicesModal').classList.remove('active');
+        }
+
+        function openProofModal() {
+            document.getElementById('proofModal').classList.add('active');
+        }
+
+        function closeProofModal() {
+            document.getElementById('proofModal').classList.remove('active');
+        }
+
+        function openEducationModal() {
+            document.getElementById('educationModal').classList.add('active');
+        }
+
+        function closeEducationModal() {
+            document.getElementById('educationModal').classList.remove('active');
+        }
+
+        function openCertificatesModal() {
+            document.getElementById('certificatesModal').classList.add('active');
+        }
+
+        function closeCertificatesModal() {
+            document.getElementById('certificatesModal').classList.remove('active');
+        }
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(event) {
+            const contactModal = document.getElementById('contactModal');
+            const servicesModal = document.getElementById('servicesModal');
+            const proofModal = document.getElementById('proofModal');
+            const educationModal = document.getElementById('educationModal');
+            const certificatesModal = document.getElementById('certificatesModal');
+            
+            if (event.target === contactModal) {
+                closeContactModal();
+            }
+            if (event.target === servicesModal) {
+                closeServicesModal();
+            }
+            if (event.target === proofModal) {
+                closeProofModal();
+            }
+            if (event.target === educationModal) {
+                closeEducationModal();
+            }
+            if (event.target === certificatesModal) {
+                closeCertificatesModal();
+            }
+        });
+
+        // Close modals with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeContactModal();
+                closeServicesModal();
+                closeProofModal();
+                closeEducationModal();
+                closeCertificatesModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
